@@ -1,0 +1,118 @@
+//  ----------------------------------------------------------------------------
+//          ATMEL Microcontroller Software Support  -  ROUSSET  -
+//  ----------------------------------------------------------------------------
+//  DISCLAIMER:  THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR
+//  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+//  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
+//  DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT, INDIRECT,
+//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//  ----------------------------------------------------------------------------
+//  File Name           : SAM7L_FLASH.mac
+//  Object              : Generic Macro File for IAR
+//  1.1 11/Jun/07 FBr   : Creation
+//  ----------------------------------------------------------------------------
+
+__var __mac_i;
+__var __mac_mem;
+__var __mac_next;
+
+/*********************************************************************
+*
+*       _InitRSTC()
+*
+* Function description
+*   Initializes the RSTC (Reset controller).
+*   This makes sense since the default is to not allow user resets, which makes it impossible to
+*   apply a second RESET via J-Link
+*/
+_InitRSTC() {
+    __writeMemory32(0xA5000001, 0xFFFFFD08,"Memory");    // Allow user reset
+}
+/*********************************************************************
+*
+*       _CheckRemap()
+*
+* Function description
+*   Maps RAM at 0.
+* #define AT91C_MC_RCR    0xFFFFFF00 // (MC) MC Remap Control Register
+*/
+_CheckRemap(){
+//* Read the value at 0x04
+    __mac_mem =__readMemory32(0x00000004,"Memory");
+    __mac_i =__mac_mem+1;
+    __writeMemory32(__mac_i,0x0000004,"Memory");
+    __mac_next =__readMemory32(0x00000004,"Memory");
+    if (__mac_i == __mac_next) {    
+          __message "RAM at0x0000 0000";  
+       __message "(SAM7L_FLASH.mac) Changing mapping: Flash mapped to 0";
+       __writeMemory32(0x00000001,0xFFFFFF00,"Memory");
+    } else {  
+       __message "(SAM7L_FLASH.mac) Flash or Rom at 0x0000 0000";
+    }
+
+}
+
+
+/*********************************************************************
+*
+*       _CheckID()
+*
+* Function description
+*   Maps RAM at 0.
+* #define AT91C_MC_RCR    0xFFFFFF00 // (MC) MC Remap Control Register
+*/
+_CheckID() {
+
+//*  Get the Chip ID 
+    __mac_i=__readMemory32(0xFFFFF240,"Memory");
+    __message " -------------------------------- Chip ID   0x",__mac_i:%X;
+   __mac_i = __mac_i & 0xFFFFFFFF;
+  if ( __mac_i == 0x27080340)  {__message " Chip ID for AT91SAM7S32";    }
+  if ( __mac_i == 0x27080341)  {__message " Chip ID for AT91SAM7S32A";   }
+  if ( __mac_i == 0x27080342)  {__message " Chip ID for AT91SAM7S321";   }
+  if ( __mac_i == 0x27090540)  {__message " Chip ID for AT91SAM7S64 or AT91SAM7S64A" ;}
+  if ( __mac_i == 0x270C0740)  {__message " Chip ID for AT91SAM7S128";   }
+  if ( __mac_i == 0x270A0741)  {__message " Chip ID for AT91SAM7S128A";  }
+  if ( __mac_i == 0x270D0940)  {__message " Chip ID for AT91SAM7S256";   }
+  if ( __mac_i == 0x270B0941)  {__message " Chip ID for AT91SAM7S256A";  }
+  if ( __mac_i == 0x270B0A40)  {__message " Chip ID for AT91SAM7S512";   }
+  if ( __mac_i == 0x27330740)  {__message "(SAM7L_FLASH.mac)  Chip ID for AT91SAM7L128";   }
+  if ( __mac_i == 0x27330540)  {__message "(SAM7L_FLASH.mac)  Chip ID for AT91SAM7L64";   }
+  
+    __mac_i=__readMemory32(0xFFFFF244,"Memory");
+    __message "(SAM7L_FLASH.mac)  Extention 0x",__mac_i:%X;
+}
+
+/*********************************************************************
+*
+*       _Watchdog()
+*
+* Function description
+*   Clear Watchdog
+*/
+_Watchdog()
+{
+//* Watchdog Disable
+//      AT91C_BASE_WDTC->WDTC_WDMR= AT91C_WDTC_WDDIS;
+   __writeMemory32(0x00008000,0xFFFFFD54,"Memory");
+   __message "(SAM7L_RAM.mac)  Watchdog Disable ";
+}
+
+/*********************************************************************
+*
+*       execUserReset() : JTAG set initially to Full Speed
+*/
+execUserReset() {
+    __message "(SAM7L_FLASH.mac) execUserReset()";
+    _CheckID();
+    _CheckRemap();
+    _Watchdog();
+    __hwReset(0);                       // Hardware Reset: CPU is automatically halted after the reset (JTAG is already configured to 32kHz)
+    _InitRSTC();                        // Enable User Reset to allow execUserReset() execution
+}
+

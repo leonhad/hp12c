@@ -1,0 +1,272 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\HP12c_c.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON                ICON                    "res\\HP12c_c.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 65
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About HP12C"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDI_ICON,IDC_STATIC,4,11,20,20
+    LTEXT           "Ver Info",IDC_STATIC_VER_INFO,39,33,119,8,SS_NOPREFIX
+    LTEXT           "copyright (c) 2008 Hewlett-Packard development L.L.P",IDC_STATIC,39,21,186,8
+    DEFPUSHBUTTON   "OK",IDOK,180,47,50,14,WS_GROUP
+    LTEXT           "PC version of the HP12C calculator",IDC_STATIC4,39,9,119,8,SS_NOPREFIX
+END
+
+IDD_HP20b_C_DIALOG DIALOGEX 0, 0, 360, 225
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "HP12C"
+MENU IDR_MENU2
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         138,IDC_STATIC_BG,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_REALSIZEIMAGE,0,0,360,225
+    LTEXT           "",IDC_VIRTUAL_LCD,52,16,210,33,SS_NOTIFY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "HP12C_c MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "HP12C_c"
+            VALUE "LegalCopyright", "Copyright (C) 2007"
+            VALUE "OriginalFilename", "HP12C_c.EXE"
+            VALUE "ProductName", "HP12C_c Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_HP20b_C_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 284
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "HP12C"
+    BEGIN
+        MENUITEM "ON +",                        ID_HP20b_ONPLUS
+        MENUITEM "ON -",                        ID_HP20b_ONMINUS
+        MENUITEM "ON + PV",                     ID_HP20b_ONC
+        MENUITEM "ON + PMT",                    ID_HP20b_OND
+        MENUITEM "ON + N + Amort",              ID_HP20b_ONAF
+        MENUITEM SEPARATOR
+        MENUITEM "Hide Titlebar",               ID_HP20b_SHOWCAPTION
+        MENUITEM SEPARATOR
+        MENUITEM "Reset",                       ID_HP20b_RESETSTATE
+        MENUITEM "Copy Screen To Clipboard",    ID_HP20b_COPYTOCLIPBOARD
+        POPUP "Test System"
+        BEGIN
+            MENUITEM "PC Calc 1",                   ID_HP20b_PCCALC1
+            MENUITEM "PC Calc 2",                   ID_HP20b_PCCALC2
+            MENUITEM "PC Calc 3",                   ID_HP20b_PCCALC3
+            MENUITEM "PC Calc 4",                   ID_HP20b_PCCALC4
+            MENUITEM "PC Calc 5",                   ID_HP20b_PCCALC5
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_HP20b_EXIT
+    END
+END
+
+IDR_MENU2 MENU 
+BEGIN
+    POPUP "Calculator"
+    BEGIN
+        MENUITEM "Hide Titlebar",               ID_HP20b_SHOWCAPTION_MENU
+        MENUITEM "Reset",                       ID_HP20b_RESETSTATE
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_HP20b_EXIT
+    END
+    POPUP "Edit"
+    BEGIN
+        MENUITEM "Paste Number",                ID_EDIT_PASTE_NUMBER
+        MENUITEM "Copy Screen To Clipboard",    ID_HP20b_COPYTOCLIPBOARD
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "Help",                        ID_HELP_HP20BBUSINESSCONSULTANT
+        MENUITEM "About",                       ID_HELP_ABOUTBOX
+    END
+END
+
+IDR_MENU3 MENU 
+BEGIN
+    POPUP "HP12C"
+    BEGIN
+        MENUITEM "Hide Titlebar",               ID_HP20b_SHOWCAPTION
+        MENUITEM SEPARATOR
+        MENUITEM "Reset",                       ID_HP20b_RESETSTATE
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_HP20b_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP2             BITMAP                  "res\\12Cbackground.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About HP12C"
+    IDS_STRING102           "HP12C emulator"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\HP12c_c.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

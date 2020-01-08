@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<workspace>
+	<project>
+		<path>$WS_DIR$\ewp\at91sam7l-ek.ewp</path>
+	</project>
+	<batchBuild>
+		<batchDefinition>
+			<name>All</name>>
+			<member>
+				<project>$WS_DIR$\at91sam7l-ek</project>
+				<configuration>at91sam7l128_flash</configuration>
+				<configuration>at91sam7l64_flash</configuration>
+			</member>
+		</batchDefinition>
+	</batchBuild>
+</workspace>
